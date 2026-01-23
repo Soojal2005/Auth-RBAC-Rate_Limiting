@@ -1,0 +1,16 @@
+import { PERMISSIONS  } from "./permission";
+
+export const ROLE_PERMISSIONS = {
+  ADMIN: [
+    PERMISSIONS.USER_READ,
+    PERMISSIONS.USER_WRITE,
+    PERMISSIONS.ADMIN_ACCESS,
+  ],
+  USER: [
+    PERMISSIONS.USER_READ,
+  ],
+  PRO: [
+    PERMISSIONS.USER_READ,
+    PERMISSIONS.USER_WRITE,
+  ],
+} as const;
