@@ -1,9 +1,14 @@
 import { usersRepository } from "./user.repository";
 import { FastifyInstance } from "fastify";
 import { requirePermission } from "../../middleware/rbac.middleware";
+import { authGuard } from "../../middleware/authGuard";
+import { PERMISSIONS } from "../rbac/rbac.config";
 export async function userRoutes(app: FastifyInstance) {
   app.get("",
-    { preHandler: [requirePermission("user:read")] },
+    { preHandler: authGuard({
+      permission: PERMISSIONS.USER_WRITE,
+      rateLimit: true,
+    }) },
     async(request,reply) =>{
        const userId = request.user.userId;
 

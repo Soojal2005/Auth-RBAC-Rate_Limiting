@@ -6,12 +6,18 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+enum Plan {
+  FREE
+  PRO
+  ADMIN
+}
 
 model User {
   id           String   @id @default(uuid())
   email        String   @unique
   passwordHash String
   role         Role     @default(USER)
+  plan         Plan     @default(FREE)
   createdAt    DateTime @default(now())
 }
 

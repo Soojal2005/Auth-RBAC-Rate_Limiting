@@ -63,6 +63,7 @@ export async function authRoutes(app: FastifyInstance) {
       userId: user.id,
       email: user.email,
       role: user.role,
+      plan:user.plan ?? "FREE",
     });
     return reply.send({
       accessToken,
