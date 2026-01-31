@@ -73,7 +73,8 @@ All APIs are documented using OpenAPI 3.0 and exposed via Swagger UI.
 Auth-protected routes are clearly marked
 Request validation schemas prevent invalid requests
 Versioned endpoints (/api/v1) keep APIs future-proof
-Swagger Overview
+
+### Swagger Overview
 
 ![Swagger Overview](./screenshots/swagger-overview.png)
 
