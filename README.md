@@ -76,7 +76,7 @@ Versioned endpoints (/api/v1) keep APIs future-proof
 
 ### Swagger Overview
 
-![Swagger Overview](screenshots/swagger-overview.png)
+![Swagger Overview](screenshots/swagger-overview.PNG)
 
 🔒 Authorized API Access
 
@@ -88,7 +88,7 @@ Bearer token is applied globally
 Protected routes become accessible
 Authorization is visually indicated
 
-![Authorized Swagger](screenshots/swagger-authorized.png)
+![Authorized Swagger](screenshots/swagger-authorized.PNG)
 
 
 This confirms that authentication and authorization are fully wired, not mocked.
