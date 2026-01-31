@@ -1,4 +1,4 @@
-import { Role } from "../rbac/rbac.config" 
+import { Role } from "../rbac/permission"; 
 
 export const RATE_LIMIT:Record<Role,{
     limit:number;
@@ -32,8 +32,13 @@ export const PLAN_RATE_LIMITS : Record<Plan,{
         limit:1000,
         windowSeconds : 60,
     },
-    ADMIN : {
-        limit : Number.POSITIVE_INFINITY,
-        windowSeconds: 60
-    }
+    ADMIN: {
+    limit: 10000,
+    windowSeconds: 60,
+  },
+} as const;
+export type PlanRateLimitConfig = keyof typeof PLAN_RATE_LIMITS;
+
+export function resolvePlan(user: { plan?: Plan }): Plan {
+  return user.plan ?? "FREE";
 }
