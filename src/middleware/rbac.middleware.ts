@@ -1,5 +1,5 @@
 import { FastifyRequest, FastifyReply } from "fastify";
-import { ROLE_PERMISSIONS } from "../modules/rbac/rbac.config";
+import { ROLE_PERMISSIONS } from "../modules/rbac/permission";
 
 export function requirePermission(permission: string) {
   return async function (request: FastifyRequest, reply: FastifyReply) {

@@ -1,5 +1,6 @@
-import { ROLE_PERMISSIONS } from "../modules/rbac/rbac.config";
-import { Permission } from "../config/permission";
+import { ROLE_PERMISSIONS } from "./permission";
+import { Permission } from "./permission";
+import { AppError } from "../../utils/error";
 
 export function requirePermission(
     permission : Permission
@@ -7,13 +8,11 @@ export function requirePermission(
     return async function (request:any,reply:any){
         const user = request.user;
         if(!user){
-            return reply.code(401).send({message:"Unauthicated"});
+            throw new AppError("Unauthorized",401);
         }
         const permissions = ROLE_PERMISSIONS[user.role];
         if(!permissions.includes(permission)){
-            return reply.code(403).send(
-                {messahe:"Forbidden: insufficiednt Permission"}
-            )
+            throw new AppError("Forbidden: insufficient permission",403);
         }
     }
 }
