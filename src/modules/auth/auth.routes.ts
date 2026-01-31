@@ -5,9 +5,30 @@ import { randomUUID } from "crypto";
 import { logger } from "../../config/logger";
 import { verifyAccessToken, signAccessToken } from "../../utils/jwt";
 import { comparePassword } from "../../utils/hash";
-import { usersRepository } from "../users/user.repository";
+import { usersRepository } from "../users/v1/user.repository";
 export async function authRoutes(app: FastifyInstance) {
-  app.post("/register", async (request, reply) => {
+  app.post("/register",
+    
+    
+    {
+    schema: {
+      body: {
+        type: "object",
+        required: ["email", "password"],
+        properties: {
+          email: { type: "string", format: "email" },
+          password: { type: "string", minLength: 6 },
+          role: {
+            type: "string",
+            enum: ["USER", "ADMIN"],
+            default: "USER",
+          },
+        },
+      },
+    },
+  },
+    
+    async (request, reply) => {
     const { email, password } = request.body as {
       email?: string;
       password?: string;
@@ -37,7 +58,22 @@ export async function authRoutes(app: FastifyInstance) {
     });
   });
 
-  app.post("/login", async (request, reply) => {
+  app.post("/login",
+    
+    {
+    schema: {
+      body: {
+        type: "object",
+        required: ["email", "password"],
+        properties: {
+          email: { type: "string", format: "email" },
+          password: { type: "string", minLength: 6 },
+        },
+      },
+    },
+  },
+    
+     async (request, reply) => {
     const { email, password } = request.body as {
       email?: string;
       password?: string;

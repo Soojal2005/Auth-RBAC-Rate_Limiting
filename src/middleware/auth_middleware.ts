@@ -1,8 +1,9 @@
 import { FastifyRequest, FastifyReply } from "fastify";
 import { verifyAccessToken } from "../utils/jwt";
-import { usersRepository } from "../modules/users/user.repository";
+import { usersRepository } from "../modules/users/v1/user.repository";
 import { users } from "../modules/auth/auth.store";
 import { logger } from "../config/logger";
+import { UnauthorizedError } from "../utils/error";
 export async function authMiddleware(
   request: FastifyRequest,
   reply: FastifyReply,
@@ -16,9 +17,7 @@ export async function authMiddleware(
   const [type, token] = authHeader.split(" ");
 
   if (type !== "Bearer" || !token) {
-    return reply.status(401).send({
-      message: "Invalid authorization format",
-    });
+    throw new UnauthorizedError("Invalid authorization format");
   }
   try {
     const payload = verifyAccessToken(token);

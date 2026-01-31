@@ -1,7 +1,7 @@
 import jwt  from "jsonwebtoken";
 import { env } from "../config/env";
 import { Role } from "@prisma/client";
-import { Plan } from "../modules/rate-limits/rate-limit.config";
+import { Plan } from "../modules/rate-limits/config";
 export type JwtPayLoad = {
     userId: string,
     email:string,
