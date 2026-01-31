@@ -1,6 +1,5 @@
-import { prisma } from "../../config/prisma";
 import { Role } from "@prisma/client";
-
+import { prisma } from "../../../config/prisma";
 export interface CreateUserInput{
     email:string,
     passwordHash:string,

@@ -1,7 +1,8 @@
 import { FastifyInstance } from "fastify";
 import { authMiddleware } from "../../middleware/auth_middleware";
 import { requirePermission } from "../../middleware/rbac.middleware";
-import { PERMISSIONS } from "../rbac/rbac.config";
+import { PERMISSIONS } from "../rbac/permission";
+import { Permission } from "../rbac/permission";
 
 export async function adminRoutes(app:FastifyInstance){
     app.get("/dashboard",
